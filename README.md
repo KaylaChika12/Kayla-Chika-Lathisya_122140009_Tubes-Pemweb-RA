@@ -49,6 +49,10 @@ Install melalui `requirements.txt`:
 - `POST /login`: Login user dan validasi password
 - `GET /api/products`: Mengambil seluruh data produk dari database
 
+## 🖼️ Dokumentasi 
+![POST Register](frontend\public\images\POST Register.png)
+![POST Login](frontend\public\images\POST Login.png)
+
 ---
 
 ## 🔧 Instalasi
@@ -68,9 +72,8 @@ pip install -r requirements.txt
 
 ## 🖼️ Dokumentasi Tampilan
 
-> Letakkan gambar di path yang benar di GitHub (`/frontend/public/images/`)
-
 ![Register Page](frontend/public/images/Register.png)
 ![Login Page](frontend/public/images/Login.png)
 ![Beranda Page](frontend/public/images/Beranda.png)
 ![Keranjang Page](frontend/public/images/Keranjang.png)
+
