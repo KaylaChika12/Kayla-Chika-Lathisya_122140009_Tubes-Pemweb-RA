@@ -36,7 +36,7 @@ const Register = () => {
         <input
           type="text"
           name="username"
-          placeholder="Nama Lengkap"
+          placeholder="Username"
           value={form.username}
           onChange={handleChange}
           className="register-input"
