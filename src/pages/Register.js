@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Register.css'; 
+import './Register.css';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -9,6 +9,8 @@ const Register = () => {
     email: '',
     password: ''
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({
@@ -22,10 +24,11 @@ const Register = () => {
     try {
       const response = await axios.post('http://localhost:6543/register', form);
       console.log(response.data);
-      alert('Registration Successful');
+      alert('Registrasi Berhasil!');
+      navigate('/login'); // langsung redirect ke login setelah sukses
     } catch (error) {
       console.error(error);
-      alert('Registration Failed');
+      alert(error.response?.data?.error || 'Registrasi gagal. Coba lagi.');
     }
   };
 
