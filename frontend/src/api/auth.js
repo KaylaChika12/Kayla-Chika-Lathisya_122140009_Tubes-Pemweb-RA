@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:6543/api'; // URL backend kamu
+const API_BASE = 'http://localhost:6543/api'; // URL backend 
 
 export const loginUser = (username, password) =>
   axios.post(`${API_BASE}/login`, { username, password });

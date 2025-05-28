@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../api/auth'; // pastikan path sesuai struktur proyek kamu
+import { loginUser } from '../api/auth'; 
 import './Login.css';
 
 const Login = () => {

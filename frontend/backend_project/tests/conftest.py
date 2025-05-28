@@ -19,7 +19,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope='session')
 def ini_file(request):
-    # potentially grab this path from a pytest option
+    
     return os.path.abspath(request.config.option.ini or 'testing.ini')
 
 @pytest.fixture(scope='session')
@@ -34,11 +34,7 @@ def dbengine(app_settings, ini_file):
     Base.metadata.drop_all(bind=engine)
     alembic.command.stamp(alembic_cfg, None, purge=True)
 
-    # run migrations to initialize the database
-    # depending on how we want to initialize the database from scratch
-    # we could alternatively call:
-    # Base.metadata.create_all(bind=engine)
-    # alembic.command.stamp(alembic_cfg, "head")
+    
     alembic.command.upgrade(alembic_cfg, "head")
 
     yield engine
@@ -67,9 +63,7 @@ def dbsession(app, tm):
 
 @pytest.fixture
 def testapp(app, tm, dbsession):
-    # override request.dbsession and request.tm with our own
-    # externally-controlled values that are shared across requests but aborted
-    # at the end
+    
     testapp = webtest.TestApp(app, extra_environ={
         'HTTP_HOST': 'example.com',
         'tm.active': True,
@@ -92,9 +86,7 @@ def app_request(app, tm, dbsession):
         request = env['request']
         request.host = 'example.com'
 
-        # without this, request.dbsession will be joined to the same transaction
-        # manager but it will be using a different sqlalchemy.orm.Session using
-        # a separate database transaction
+       
         request.dbsession = dbsession
         request.tm = tm
 

@@ -38,10 +38,8 @@ def main(argv=sys.argv):
         with env['request'].tm:
             dbsession = env['request'].dbsession
 
-            # ⬇️ Tambahkan baris ini untuk membuat semua tabel
             models.Base.metadata.create_all(bind=dbsession.bind)
 
-            # Tambahkan user dummy setelah tabel dibuat
             setup_models(dbsession)
 
     except OperationalError:

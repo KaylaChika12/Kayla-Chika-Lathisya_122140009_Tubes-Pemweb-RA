@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from .meta import Base  # ✅ Sesuai dengan struktur kamu
+from .meta import Base  
 
 class Product(Base):
     __tablename__ = 'products'

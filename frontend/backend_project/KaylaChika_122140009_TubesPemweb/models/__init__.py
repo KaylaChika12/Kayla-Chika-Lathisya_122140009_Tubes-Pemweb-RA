@@ -5,16 +5,13 @@ import zope.sqlalchemy
 import transaction
 from zope.sqlalchemy import register
 
-# Global session & base declarative
 DBSession = scoped_session(sessionmaker())
 register(DBSession)
 Base = declarative_base()
 
-# Import all models here
 from .user import User
 from .product import Product
 
-# Ensure all relationships/mappings are configured
 configure_mappers()
 
 def get_engine(settings, prefix='sqlalchemy.'):
