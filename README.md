@@ -1,67 +1,62 @@
-# BOHE Parfume Bali
+ 🛒 BOHE Parfume Bali – Aplikasi Web E-Commerce
 
-Proyek ini merupakan sebuah aplikasi e-commerce sederhana berbasis React yang menjual produk parfum dengan tema khas Bali. Aplikasi ini memungkinkan pengguna untuk melihat daftar produk, menambahkannya ke keranjang, memilih metode pembayaran, serta melakukan proses login dan registrasi pengguna.
+ 📌 Deskripsi Aplikasi Web
+**BOHE Parfume Bali** adalah aplikasi e-commerce parfum berbasis web yang dibangun dengan frontend menggunakan **React JS** dan backend menggunakan **Python Pyramid**. Aplikasi ini memungkinkan pengguna untuk:
+- Melihat daftar produk parfum
+- Melihat detail produk
+- Melakukan registrasi dan login
+- Menambahkan produk ke keranjang belanja
 
-## 🛠️ Teknologi yang Digunakan
+Sistem ini juga terintegrasi dengan **PostgreSQL** sebagai basis data, serta menggunakan **Redux** untuk pengelolaan state di frontend.
 
-- React JS
-- Redux (untuk manajemen state)
-- React Router (navigasi halaman)
-- LocalStorage (menyimpan data keranjang)
-- HTML & CSS (styling dasar)
 
----
+## ⚙️ Dependensi yang Dibutuhkan
 
-## 📁 Struktur Halaman
+### Backend (Python Pyramid)
+Install melalui `requirements.txt`:
+- `pyramid`
+- `pyramid_jinja2`
+- `pyramid_tm`
+- `SQLAlchemy`
+- `zope.sqlalchemy`
+- `psycopg2-binary`
+- `passlib[bcrypt]`
+- `waitress`
 
-### 1. **Beranda (Home Page)**
-Menampilkan daftar produk parfum dari BOHE Bali lengkap dengan nama, gambar, dan harga. Pengguna dapat menambahkan produk ke keranjang melalui tombol **Add to Cart**.
+💡 Fitur Aplikasi
+🔐 Autentikasi
+- Register (dengan username, email, dan password)
+- Login (dengan validasi ke database PostgreSQL)
 
-📷 **Contoh Tampilan:**
+🛍️ Halaman Frontend
+- Home Page: Menampilkan semua produk parfum dari backend
+- Login Page: Autentikasi pengguna berdasarkan username dan password
+- Register Page: Pendaftaran pengguna baru
+- Product Detail Page: Menampilkan detail dari setiap produk
+- Cart Page: Menyimpan produk-produk yang ditambahkan oleh user
 
-![Home Page](/mnt/data/85641e02-118b-4443-a081-eb71a5f9576c.png)
+🧠 Manajemen State
+- Menggunakan Redux Toolkit untuk menyimpan data user login dan cart
+- Integrasi API menggunakan axios
 
----
+🛠️ Backend API
+- POST /register: Menambahkan user baru dengan password terenkripsi
+- POST /login: Login user dan validasi password
+- GET /api/products: Mengambil seluruh data produk dari database
 
-### 2. **Keranjang (Cart Page)**
-Menampilkan produk yang telah ditambahkan ke keranjang. Pengguna dapat:
-- Melihat total harga
-- Menghapus produk dari keranjang
-- Memilih metode pembayaran (QRIS, Bank Mandiri, BCA, BRI, BSI, BNI)
-- Melakukan pembayaran dengan tombol **Bayar Sekarang**
 
-📷 **Contoh Tampilan:**
+Instalasi:
+```bash
+pip install -r requirements.txt
 
-![Cart Page](/mnt/data/6b254d1c-1fa5-4726-8aef-8671bd5ec45c.png)
+Referensi
 
----
+[Python Pyramid](https://docs.pylonsproject.org/projects/pyramid/)
+[PostgreSQL](https://www.postgresql.org/)
 
-### 3. **Login Page**
-Halaman untuk memasukkan username pengguna dan login ke sistem.
+Dokumentasi
 
-📷 **Contoh Tampilan:**
-
-![Login Page](/mnt/data/bd587cd0-988a-481b-9efe-1bf43a73ff11.png)
-
----
-
-### 4. **Register Page**
-Halaman registrasi untuk pengguna baru, terdiri dari nama lengkap, email, dan password.
-
-📷 **Contoh Tampilan:**
-
-![Register Page](/mnt/data/89870e59-75ab-4daa-901f-6fac980f9bc2.png)
-
----
-
-## 📦 Fitur Utama
-
-- 🛒 Tambah produk ke keranjang
-- 🗑️ Hapus produk dari keranjang
-- 💳 Pilih metode pembayaran
-- 💰 Total harga otomatis dihitung
-- 🔐 Login dan Register pengguna
-- 💾 Data keranjang tersimpan otomatis di LocalStorage
-
----
-
+![Register Page](frontend\public\images\Register.png)
+![Login Page](frontend\public\images\Login.png)
+![Beranda Page](frontend\public\images\Beranda.png)
+![Keranjang Page](frontend\public\images\Keranjang.png)
