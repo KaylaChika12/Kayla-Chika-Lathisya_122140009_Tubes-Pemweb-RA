@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../api/auth'; 
+import axios from 'axios'; 
 import './Login.css';
 
 const Login = () => {
@@ -25,13 +25,17 @@ const Login = () => {
     }
 
     try {
-      const res = await loginUser(form.username, form.password);
+      const res = await axios.post('http://localhost:6543/api/login', {
+        username: form.username,
+        password: form.password
+      });
+
       dispatch(login({ username: form.username }));
-      alert('Login berhasil!');
+      alert(res.data.message || 'Login berhasil!');
       navigate('/');
     } catch (err) {
-      console.error(err);
-      alert('Login gagal. Periksa kembali username dan password.');
+      console.error(err.response?.data || err.message);
+      alert(err.response?.data?.error || 'Login gagal. Periksa kembali username dan password.');
     }
   };
 

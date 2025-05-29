@@ -1,21 +1,11 @@
 from pyramid.view import view_config
-from pyramid.response import Response
 from pyramid.httpexceptions import HTTPNotFound
-from ..models import DBSession
 from ..models.product import Product
-
 
 @view_config(route_name='get_products', renderer='json', request_method='GET')
 def get_products(request):
-    products = DBSession.query(Product).all()
-    return [{
-        'id': p.id,
-        'name': p.name,
-        'price': p.price,
-        'description': p.description,
-        'image': p.image
-    } for p in products]
-
+    products = request.dbsession.query(Product).all()
+    return [p.to_dict() for p in products]
 
 @view_config(route_name='create_product', renderer='json', request_method='POST')
 def create_product(request):
@@ -24,36 +14,36 @@ def create_product(request):
         name=data['name'],
         price=data['price'],
         description=data.get('description'),
-        image=data.get('image')
+        image_url=data.get('image_url'),
+        stock=data.get('stock', 0)
     )
-    DBSession.add(product)
+    request.dbsession.add(product)
     return {'message': 'Produk berhasil ditambahkan'}
-
 
 @view_config(route_name='update_product', renderer='json', request_method='PUT')
 def update_product(request):
     product_id = request.matchdict.get('id')
     data = request.json_body
-    product = DBSession.query(Product).get(product_id)
+    product = request.dbsession.get(Product, product_id)
 
     if not product:
-        return {'error': 'Produk tidak ditemukan'}, 404
+        raise HTTPNotFound(json_body={'error': 'Produk tidak ditemukan'})
 
     product.name = data['name']
     product.price = data['price']
     product.description = data.get('description')
-    product.image = data.get('image')
+    product.image_url = data.get('image_url')
+    product.stock = data.get('stock', product.stock)
 
     return {'message': 'Produk berhasil diupdate'}
-
 
 @view_config(route_name='delete_product', renderer='json', request_method='DELETE')
 def delete_product(request):
     product_id = request.matchdict.get('id')
-    product = DBSession.query(Product).get(product_id)
+    product = request.dbsession.get(Product, product_id)
 
     if not product:
-        return {'error': 'Produk tidak ditemukan'}, 404
+        raise HTTPNotFound(json_body={'error': 'Produk tidak ditemukan'})
 
-    DBSession.delete(product)
+    request.dbsession.delete(product)
     return {'message': 'Produk berhasil dihapus'}

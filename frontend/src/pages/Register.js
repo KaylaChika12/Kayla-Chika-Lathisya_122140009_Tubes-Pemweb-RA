@@ -22,10 +22,10 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:6543/register', form);
+      const response = await axios.post('http://localhost:6543/api/register', form);
       console.log(response.data);
       alert('Registrasi Berhasil!');
-      navigate('/login'); // langsung redirect ke login setelah sukses
+      navigate('/login'); 
     } catch (error) {
       console.error(error);
       alert(error.response?.data?.error || 'Registrasi gagal. Coba lagi.');
