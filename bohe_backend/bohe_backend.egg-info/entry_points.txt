@@ -1,0 +1,5 @@
+[console_scripts]
+initialize_bohe_backend_db = bohe_backend.scripts.initialize_db:main
+
+[paste.app_factory]
+main = bohe_backend:main
