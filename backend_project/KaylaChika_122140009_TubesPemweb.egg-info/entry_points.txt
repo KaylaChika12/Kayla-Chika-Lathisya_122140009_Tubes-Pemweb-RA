@@ -1,5 +1,0 @@
-[console_scripts]
-initialize_KaylaChika_122140009_TubesPemweb_db = KaylaChika_122140009_TubesPemweb.scripts.initialize_db:main
-
-[paste.app_factory]
-main = KaylaChika_122140009_TubesPemweb:main
